@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Reslut Page</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script>
+        var app=angular.module("myApp",[]);
+        app.controller("myContr",function ($scope,$http) {
+            $scope.showContent=false
+            $http.get("getSession.php").then(function (response) {
+                var res=response.data;
+                if(res==0)
+                    window.location.href="index.html";
+                else
+                    $scope.showContent=true;
+            })
+        })
+    </script>
+</head>
+<body ng-show="showContent" ng-controller="myContr">
+    <h1>Welcome to result page</h1>
+</body>
+</html>
